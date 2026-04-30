@@ -1,5 +1,5 @@
 // Importiamo il file di connessione al database
-// const connection = require('../data/db');
+const connection = require('../data/db');
 
 // elenco funzioni relative alle rotte della risorsa pizze
 
