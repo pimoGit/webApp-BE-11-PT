@@ -18,8 +18,11 @@ function show(req, res) {
     // recuperiamo l'id dall' URL
     const id = req.params.id
 
-    // query da eseguire con ?seganposto per prepared statement
+    // query da eseguire con ?seganposto per prepared statement per libro
     const sql = 'SELECT * FROM books WHERE id = ?';
+
+    // query da eseguire con ?seganposto per le review del libro
+    const reviewsSql = 'SELECT * FROM reviews WHERE book_id = ?';
 
     // chiamata per esecuzione query libro
     connection.query(sql, [id], (err, bookResults) => {
@@ -27,7 +30,17 @@ function show(req, res) {
         if (bookResults.length === 0) return res.status(404).json({ error: 'Book not found' });
 
         const book = bookResults[0];
-        res.json(book);
+
+        // se il libro è stato trovato eseguiamo la seconda query per le reviews
+        // chiamata per esecuzione query libro
+        connection.query(reviewsSql, [id], (err, reviewResults) => {
+            if (err) return res.status(500).json({ error: 'Database query failed' });
+
+            book.reviews = reviewResults;
+            res.json(book);
+
+        })
+
     })
 
 };
