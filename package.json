@@ -1,0 +1,14 @@
+{
+  "name": "webapp-be-11-pt",
+  "version": "1.0.0",
+  "description": "webapp di BE classe 11PT",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "classe11PT",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
