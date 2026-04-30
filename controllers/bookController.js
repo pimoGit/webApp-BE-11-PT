@@ -15,8 +15,22 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    res.send("questa è la show del libro");
-}
+    // recuperiamo l'id dall' URL
+    const id = req.params.id
+
+    // query da eseguire con ?seganposto per prepared statement
+    const sql = 'SELECT * FROM books WHERE id = ?';
+
+    // chiamata per esecuzione query libro
+    connection.query(sql, [id], (err, bookResults) => {
+        if (err) return res.status(500).json({ error: 'Database query failed' });
+        if (bookResults.length === 0) return res.status(404).json({ error: 'Book not found' });
+
+        const book = bookResults[0];
+        res.json(book);
+    })
+
+};
 
 
 
