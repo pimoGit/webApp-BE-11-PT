@@ -3,7 +3,7 @@ const app = express()
 const port = 3000
 
 // importo il router della risorsa pizze
-// const pizzasRouter = require('./routers/pizzas');
+const bookRouter = require('./routers/bookRouter');
 
 // importo middleware di gestione errore interno server 500
 const errorsHandler = require('./middlewares/errorsHandler');
@@ -22,8 +22,8 @@ app.get('/', (req, res) => {
     res.send("Benvenuto nella API della mia libreria");
 })
 
-// rotte di CRUD per la risorsa pizze
-// app.use("/pizzas", pizzasRouter)
+// rotte di CRUD per la risorsa books
+app.use("/api/books", bookRouter)
 
 
 // registra globalmente il middleware di gestione errore interno server 500
