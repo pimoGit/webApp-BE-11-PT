@@ -1,6 +1,14 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT
+// import cors middleware
+const cors = require("cors");
+
+// abilitiamo dominio FE
+
+app.use(cors({
+    origin: 'http://localhost:5173'
+}));
 
 // importo il router della risorsa pizze
 const bookRouter = require('./routers/bookRouter');
