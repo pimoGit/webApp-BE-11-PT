@@ -7,7 +7,7 @@ const cors = require("cors");
 // abilitiamo dominio FE
 
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: process.env.FE_APP
 }));
 
 // importo il router della risorsa pizze
