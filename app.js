@@ -19,6 +19,11 @@ const errorsHandler = require('./middlewares/errorsHandler');
 // importo middleware di gestione errore di chiamata su rotta inesistente 404
 const notFound = require('./middlewares/notFound');
 
+// impoto middleware per path imgs
+const imagePath = require('./middlewares/imagePath');
+
+app.use(imagePath);
+
 app.use(express.static('public'));
 
 // attivazione body parser per formato json per tutte le rotte	

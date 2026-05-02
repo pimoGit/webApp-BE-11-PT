@@ -10,7 +10,15 @@ function index(req, res) {
     // eseguiamo la query!
     connection.query(sql, (err, results) => {
         if (err) return res.status(500).json({ error: 'Database query failed' });
-        res.json(results);
+
+        const books = results.map((book) => {
+            return {
+                ...book,
+                image: req.imagePath + book.image
+            }
+        })
+
+        res.json(books);
     });
 }
 
@@ -30,6 +38,8 @@ function show(req, res) {
         if (bookResults.length === 0) return res.status(404).json({ error: 'Book not found' });
 
         const book = bookResults[0];
+
+        book.image = req.imagePath + book.image;
 
         // se il libro è stato trovato eseguiamo la seconda query per le reviews
         // chiamata per esecuzione query libro
